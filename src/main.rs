@@ -27,7 +27,7 @@ async fn main() {
     // write durations to txt
     let mut file = File::create("durations.txt").unwrap();
 
-    let iterations = 10; // Number of iterations
+    let iterations = 1000; // Number of iterations
     // also find minimum value
     let mut min_duration = 10e10;
     for _ in 0..iterations{
