@@ -1,3 +1,5 @@
+use std::fs::File;
+use std::io::Write;
 use serde_json::{json, to_string, Value};
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
 use hyper::{Client, Uri};
@@ -22,7 +24,10 @@ async fn main() {
     let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
     println!("{:?}", body);
 
-    let iterations = 100; // Number of iterations
+    // write durations to txt
+    let mut file = File::create("durations.txt").unwrap();
+
+    let iterations = 10; // Number of iterations
     // also find minimum value
     let mut min_duration = 10e10;
     for _ in 0..iterations{
@@ -50,6 +55,8 @@ async fn main() {
         let duration = timestamp - start;
         // convert to float
         let duration = duration as f64;
+        // WRITE DURATION TO TXT
+        file.write_all(format!("{:?}\n", duration).as_bytes()).unwrap();
         if duration < min_duration {
             min_duration = duration;
         }
