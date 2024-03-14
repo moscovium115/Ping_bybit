@@ -25,7 +25,7 @@ async fn main() {
     println!("{:?}", body);
 
     // write durations to txt
-    let mut file = File::create("durations.txt").unwrap();
+    let mut file = File::create("latencies.txt").unwrap();
 
     let iterations = 1000; // Number of iterations
     // also find minimum value
