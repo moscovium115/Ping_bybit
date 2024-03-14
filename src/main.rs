@@ -13,7 +13,9 @@ async fn main() {
     let client = Client::builder().build::<_, hyper::Body>(https);
 
     let mut total_duration = 0.0; // Variable to accumulate total duration
-    let snapshot_url = "https://api.bybit.com/v5/market/time";
+    let snapshot_url = "https://api.bybit.com";
+    // let snapshot_url = "https://api.bybit.com/v5/order/create";
+
     let uri: Uri = snapshot_url.parse().unwrap();
 
     let response = client.get(Uri::try_from(&uri).unwrap()).await.unwrap();
@@ -35,8 +37,8 @@ async fn main() {
         let snapshot = String::from_utf8(body.to_vec()).unwrap();
 
         // Parse the JSON response
-        let parsed_snapshot: Value = serde_json::from_str(&snapshot).unwrap();
-        println!("{:?}",parsed_snapshot);
+        // let parsed_snapshot: Value = serde_json::from_str(&snapshot).unwrap();
+        // println!("{:?}",parsed_snapshot);
 
 
         // Extract the timestamp and convert it to a u128 integer
