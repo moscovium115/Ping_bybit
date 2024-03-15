@@ -57,8 +57,8 @@ print("time_1:",time_1)
 print("time_2:",time_2)
 print("timeNano:",time_nano)
 print("time diff nano",time_nano-time_1)
-print("time diff time nano",(time_nano-time_1)/10e6)
-print("Time taken to receive response:", (time_2-time_1)/10e6)
+print("time diff time nano",(time_nano-time_1)/1e6)
+print("Time taken to receive response:", (time_2-time_1)/1e6)
 
 
 
