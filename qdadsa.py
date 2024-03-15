@@ -36,6 +36,7 @@ while True:
     time_2=time_ns()
     print(chunk)
     print("Time taken to receive response:", (time_2-time_1)/10e6)
+    print(time_1)
     if not chunk:
         break
     response += chunk
