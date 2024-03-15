@@ -29,8 +29,8 @@ median=np.median(latencies)
 print('Median:', median)
 
 # 99th percentile:
-percentile_99 = np.percentile(latencies, 99)
-print('99th percentile:', percentile_99)
+percentile_99_9 = np.percentile(latencies, 99.9)
+print('99.9th percentile:', percentile_99_9)
 
 #minimum and maximum
 minimum = np.min(latencies)
@@ -38,4 +38,5 @@ print('Minimum:', minimum)
 
 maximum = np.max(latencies)
 print('Maximum:', maximum)
+print("number of samples:", len(latencies))
 

@@ -15,7 +15,7 @@ async fn main() {
     let client = Client::builder().build::<_, hyper::Body>(https);
 
     let mut total_duration = 0.0; // Variable to accumulate total duration
-    let snapshot_url = "https://api.bybit.com";
+    let snapshot_url = "https://api.bybit.com/v2/public/tickers?symbol=BTCUSDT";
     // let snapshot_url = "https://api.bybit.com/v5/order/create";
 
     let uri: Uri = snapshot_url.parse().unwrap();
@@ -39,7 +39,7 @@ async fn main() {
         let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
 
         // Convert the response body to a string
-        let snapshot = String::from_utf8(body.to_vec()).unwrap();
+        // let snapshot = String::from_utf8(body.to_vec()).unwrap();
 
         // Parse the JSON response
         // let parsed_snapshot: Value = serde_json::from_str(&snapshot).unwrap();
