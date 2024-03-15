@@ -15,7 +15,7 @@ async fn main() {
     let client = Client::builder().build::<_, hyper::Body>(https);
 
     let mut total_duration = 0.0; // Variable to accumulate total duration
-    let snapshot_url = "https://api.bybit.com/v2/public/tickers?symbol=BTCUSDT";
+    let snapshot_url = "https://api.bybit.com/v5/market/time";
     // let snapshot_url = "https://api.bybit.com/v5/order/create";
 
     let uri: Uri = snapshot_url.parse().unwrap();
