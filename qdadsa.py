@@ -1,3 +1,4 @@
+import ast
 import socket
 import ssl
 from time import time_ns
@@ -31,18 +32,37 @@ ssl_sock.sendall(request.encode())
 
 # Receive the response
 response = b""
-while True:
-    chunk = ssl_sock.recv(4096)
-    time_2=time_ns()
-    print(chunk)
-    print("Time taken to receive response:", (time_2-time_1)/10e6)
-    print(time_1)
-    if not chunk:
-        break
-    response += chunk
+
+chunk = ssl_sock.recv(4096)
+time_2=time_ns()
+# format as json
+response_1=str(chunk.decode())
+print(response_1)
+# response= ast.literal_eval(response)
+#reponse turn str to dict
+# response=eval(response)
+
+# Extracting the JSON part of the response
+json_start_index = response_1.find('{')
+json_end_index = response_1.rfind('}') + 1
+json_string = response_1[json_start_index:json_end_index]
+
+# Convert the JSON string to a dictionary
+import json
+response_dict = json.loads(json_string)
+
+# Extract the "timeNano" value from the dictionary
+time_nano = int(response_dict['result']['timeNano'])
+print("time_1:",time_1)
+print("time_2:",time_2)
+print("timeNano:",time_nano)
+print("time diff time nano",(time_nano-time_1)/10e6)
+print("Time taken to receive response:", (time_2-time_1)/10e6)
+
+
 
 # Print the response
-print(response.decode())
+# print(response.decode())
 
 # Close the socket
 ssl_sock.close()
